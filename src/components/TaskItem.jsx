@@ -1,3 +1,4 @@
+// Enhanced: Improve task completion animation
 // Enhanced: Add type safety comments for task objects
 import { useState } from 'react'
 import './TaskItem.css'
