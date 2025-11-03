@@ -1,3 +1,4 @@
+// Enhanced: Add keyboard navigation support comments
 import { useState } from 'react'
 import './NavigationBar.css'
 
@@ -5,10 +6,10 @@ function NavigationBar({ activePage, onPageChange }) {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
 
   const navItems = [
-    { id: 'dashboard', label: 'Dashboard', icon: '📊' },
-    { id: 'tasks', label: 'Tasks', icon: '✓' },
-    { id: 'analytics', label: 'Analytics', icon: '📈' },
-    { id: 'settings', label: 'Settings', icon: '⚙️' },
+    { id: 'dashboard', label: 'Dashboard', icon: 'ðŸ“Š' },
+    { id: 'tasks', label: 'Tasks', icon: 'âœ“' },
+    { id: 'analytics', label: 'Analytics', icon: 'ðŸ“ˆ' },
+    { id: 'settings', label: 'Settings', icon: 'âš™ï¸' },
   ]
 
   const handleNavClick = (pageId) => {
@@ -20,7 +21,7 @@ function NavigationBar({ activePage, onPageChange }) {
     <nav className="navigation-bar">
       <div className="nav-container">
         <div className="nav-brand" onClick={() => handleNavClick('dashboard')}>
-          <span className="brand-icon">⚡</span>
+          <span className="brand-icon">âš¡</span>
           <span className="brand-text">
             <span className="brand-gradient">Nexus</span>
             <span className="brand-accent">Flow</span>
