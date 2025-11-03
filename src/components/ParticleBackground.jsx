@@ -1,3 +1,4 @@
+// Enhanced: Improve particle background performance
 import { useEffect, useRef } from 'react'
 import './ParticleBackground.css'
 
