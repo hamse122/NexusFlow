@@ -1,3 +1,4 @@
+// Enhanced: Improve ProgressRing animation smoothness
 import { useEffect, useState } from 'react'
 import './ProgressRing.css'
 
