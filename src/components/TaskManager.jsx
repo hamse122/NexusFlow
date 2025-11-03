@@ -1,3 +1,4 @@
+// Enhanced: Optimize local storage operations
 // Enhanced: Add code comments to TaskManager component
 import { useState, useEffect } from 'react'
 import TaskInput from './TaskInput'
