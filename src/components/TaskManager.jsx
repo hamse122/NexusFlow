@@ -1,3 +1,4 @@
+// Enhanced: Add code comments to TaskManager component
 import { useState, useEffect } from 'react'
 import TaskInput from './TaskInput'
 import TaskList from './TaskList'
