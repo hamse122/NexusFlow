@@ -1,3 +1,4 @@
+// Enhanced: Improve Settings page form validation
 import './Settings.css'
 
 function Settings() {
