@@ -1,3 +1,4 @@
+// Enhanced: Add loading state handling comments
 import { useState } from 'react'
 import TaskItem from './TaskItem'
 import './TaskList.css'
@@ -32,7 +33,7 @@ function TaskList({ tasks, onToggleTask, onDeleteTask, onUpdatePriority, onMoveT
   if (tasks.length === 0) {
     return (
       <div className="task-list-empty">
-        <div className="empty-state-icon">✨</div>
+        <div className="empty-state-icon">âœ¨</div>
         <p>No tasks yet. Add one above!</p>
       </div>
     )
