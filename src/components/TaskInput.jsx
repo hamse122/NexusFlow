@@ -1,3 +1,4 @@
+// Enhanced: Add ARIA labels to interactive elements
 // Enhanced: Enhance TaskInput accessibility attributes
 import { useState } from 'react'
 import './TaskInput.css'
