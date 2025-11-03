@@ -1,0 +1,86 @@
+.task-manager {
+  width: 100%;
+  position: relative;
+  min-height: 100vh;
+}
+
+.task-manager-content {
+  position: relative;
+  z-index: 1;
+}
+
+.task-manager-header {
+  text-align: center;
+  margin-bottom: 40px;
+  padding: 30px 0;
+}
+
+.nexusflow-title {
+  font-size: 4rem;
+  font-weight: 700;
+  margin-bottom: 10px;
+  letter-spacing: -2px;
+  background: linear-gradient(135deg, #00f3ff 0%, #8b5cf6 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: titleGlow 3s ease-in-out infinite;
+}
+
+.title-gradient {
+  background: linear-gradient(135deg, #00f3ff 0%, #8b5cf6 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.title-accent {
+  color: #8b5cf6;
+}
+
+.task-manager-subtitle {
+  font-size: 1rem;
+  color: #8b9cb6;
+  font-weight: 300;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+@keyframes titleGlow {
+  0%, 100% {
+    filter: drop-shadow(0 0 10px rgba(0, 243, 255, 0.3));
+  }
+  50% {
+    filter: drop-shadow(0 0 20px rgba(139, 92, 246, 0.5));
+  }
+}
+
+.dashboard-section {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 30px;
+  margin-bottom: 40px;
+  align-items: start;
+}
+
+.progress-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@media (max-width: 768px) {
+  .nexusflow-title {
+    font-size: 2.5rem;
+  }
+
+  .dashboard-section {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .task-manager-header {
+    margin-bottom: 30px;
+    padding: 20px 0;
+  }
+}

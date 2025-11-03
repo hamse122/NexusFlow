@@ -1,0 +1,57 @@
+.progress-ring-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.progress-ring {
+  transform: rotate(-90deg);
+  filter: drop-shadow(0 0 10px rgba(0, 243, 255, 0.5));
+}
+
+.progress-ring-background {
+  fill: none;
+  stroke: rgba(255, 255, 255, 0.1);
+}
+
+.progress-ring-foreground {
+  fill: none;
+  stroke: url(#progressGradient);
+  stroke-linecap: round;
+  transition: stroke-dashoffset 0.3s ease;
+}
+
+.progress-ring svg {
+  filter: drop-shadow(0 0 20px rgba(139, 92, 246, 0.4));
+}
+
+.progress-ring svg defs {
+  position: absolute;
+}
+
+.progress-ring-text {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+}
+
+.progress-ring-percentage {
+  font-size: 2rem;
+  font-weight: 700;
+  background: linear-gradient(135deg, #00f3ff 0%, #8b5cf6 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.progress-ring-label {
+  font-size: 0.85rem;
+  color: #8b9cb6;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
