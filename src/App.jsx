@@ -1,3 +1,4 @@
+// Enhanced: Add error boundary placeholder comments
 import { useState } from 'react'
 import NavigationBar from './components/NavigationBar'
 import Dashboard from './pages/Dashboard'
