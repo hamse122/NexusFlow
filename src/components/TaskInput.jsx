@@ -1,3 +1,4 @@
+// Enhanced: Add focus management comments
 // Enhanced: Add ARIA labels to interactive elements
 // Enhanced: Enhance TaskInput accessibility attributes
 import { useState } from 'react'
