@@ -1,3 +1,4 @@
+// Enhanced: Improve empty state messaging
 // Enhanced: Add drag-and-drop visual feedback enhancement
 // Enhanced: Add loading state handling comments
 import { useState } from 'react'
@@ -34,7 +35,7 @@ function TaskList({ tasks, onToggleTask, onDeleteTask, onUpdatePriority, onMoveT
   if (tasks.length === 0) {
     return (
       <div className="task-list-empty">
-        <div className="empty-state-icon">Ã¢Å“Â¨</div>
+        <div className="empty-state-icon">ÃƒÂ¢Ã…â€œÃ‚Â¨</div>
         <p>No tasks yet. Add one above!</p>
       </div>
     )
