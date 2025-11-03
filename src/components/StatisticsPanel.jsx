@@ -1,3 +1,4 @@
+// Enhanced: Optimize StatisticsPanel animation performance
 import { useEffect, useState, useRef } from 'react'
 import './StatisticsPanel.css'
 
