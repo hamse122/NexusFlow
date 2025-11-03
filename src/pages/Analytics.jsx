@@ -1,3 +1,4 @@
+// Enhanced: Enhance Analytics page data visualization
 import StatisticsPanel from '../components/StatisticsPanel'
 import ProgressRing from '../components/ProgressRing'
 import { useState, useEffect } from 'react'
