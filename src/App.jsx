@@ -8,7 +8,23 @@ import Settings from './pages/Settings'
 import ParticleBackground from './components/ParticleBackground'
 import './App.css'
 
+function App() {
+  const [activePage, setActivePage] = useState('dashboard')
 
+  const renderPage = () => {
+    switch (activePage) {
+      case 'dashboard':
+        return <Dashboard />
+      case 'tasks':
+        return <Tasks />
+      case 'analytics':
+        return <Analytics />
+      case 'settings':
+        return <Settings />
+      default:
+        return <Dashboard />
+    }
+  }
 
   return (
     <div className="app">
