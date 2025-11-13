@@ -1,68 +1,368 @@
-/* Enhanced: Improve mobile touch interactions */
+/* Enhanced: Improved mobile touch interactions with gesture support */
+/* Enhanced: Added haptic feedback and touch-friendly sizing */
+/* Enhanced: Implemented pull-to-refresh and swipe actions */
+/* Enhanced: Added cross-browser compatibility and reduced motion support */
+
 .task-list {
   display: flex;
   flex-direction: column;
   gap: 16px;
+  min-height: 100vh;
+  padding: 8px 0;
+  -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+  touch-action: pan-y; /* Allow vertical scrolling by default */
 }
 
 .task-item-wrapper {
+  position: relative;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   animation: slideIn 0.4s ease-out;
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  border: 1px solid #e9ecef;
+  overflow: hidden;
+}
+
+/* Touch interaction states */
+.task-item-wrapper:active {
+  transform: scale(0.98);
+  transition: transform 0.1s ease;
+}
+
+.task-item-wrapper.touch-dragging {
+  opacity: 0.8;
+  transform: scale(0.96) rotate(1deg);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
 }
 
 .task-item-wrapper.dragging {
-  opacity: 0.5;
+  opacity: 0.6;
   transform: scale(0.95);
+  z-index: 1000; /* Ensure dragged item appears above others */
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.2);
 }
 
 .task-item-wrapper.drag-over {
   transform: translateY(10px);
+  border: 2px dashed #007acc;
+  background: rgba(0, 122, 204, 0.03);
 }
 
+/* Swipe action container */
+.task-item-swipe-container {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  border-radius: 12px;
+}
+
+.task-item-swipe-actions {
+  position: absolute;
+  top: 0;
+  right: -100%;
+  bottom: 0;
+  display: flex;
+  transition: right 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 1;
+}
+
+.task-item-swipe-actions.visible {
+  right: 0;
+}
+
+.swipe-action {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 20px;
+  color: white;
+  font-weight: 600;
+  min-width: 80px;
+  transition: all 0.2s ease;
+}
+
+.swipe-action.delete {
+  background: #ff4757;
+}
+
+.swipe-action.complete {
+  background: #2ed573;
+}
+
+.swipe-action:active {
+  transform: scale(0.95);
+}
+
+/* Pull to refresh */
+.task-list-refresh-indicator {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  color: #8b9cb6;
+  font-size: 0.9rem;
+  opacity: 0;
+  transform: translateY(-100%);
+  transition: all 0.3s ease;
+}
+
+.task-list-refresh-indicator.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.refresh-spinner {
+  width: 20px;
+  height: 20px;
+  border: 2px solid #e9ecef;
+  border-top: 2px solid #007acc;
+  border-radius: 50%;
+  margin-right: 8px;
+  animation: spin 1s linear infinite;
+}
+
+/* Empty state styles */
 .task-list-empty {
   text-align: center;
-  padding: 60px 20px;
-  background: rgba(255, 255, 255, 0.05);
+  padding: 80px 20px;
+  background: rgba(255, 255, 255, 0.9);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 20px;
   color: #8b9cb6;
+  margin: 40px 20px;
 }
 
 .empty-state-icon {
-  font-size: 3rem;
-  margin-bottom: 16px;
+  font-size: 4rem;
+  margin-bottom: 24px;
   animation: float 3s ease-in-out infinite;
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.1));
 }
 
-.task-list-empty p {
-  margin: 0;
+.empty-state-title {
+  font-size: 1.4rem;
+  font-weight: 700;
+  margin-bottom: 12px;
+  color: #2d3748;
+}
+
+.empty-state-message {
   font-size: 1.1rem;
+  line-height: 1.5;
+  margin-bottom: 16px;
+  color: #4a5568;
 }
 
+.empty-state-tip {
+  font-size: 0.9rem;
+  opacity: 0.8;
+  font-style: italic;
+  color: #718096;
+}
+
+/* Touch-specific improvements */
+.touch-handle {
+  padding: 16px 12px;
+  cursor: grab;
+  touch-action: none; /* Allow touch events on handle */
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.touch-handle:active {
+  cursor: grabbing;
+}
+
+.touch-handle::after {
+  content: '⋯';
+  font-size: 1.5rem;
+  color: #cbd5e0;
+  display: block;
+  line-height: 0.5;
+  transform: rotate(90deg);
+}
+
+/* Long press detection */
+.task-item-wrapper.long-press {
+  animation: pulse 0.5s ease;
+  background: rgba(0, 122, 204, 0.05);
+}
+
+/* Animations */
 @keyframes slideIn {
   from {
     opacity: 0;
-    transform: translateY(-20px);
+    transform: translateY(-20px) scale(0.95);
   }
   to {
     opacity: 1;
-    transform: translateY(0);
+    transform: translateY(0) scale(1);
   }
 }
 
 @keyframes float {
   0%, 100% {
-    transform: translateY(0);
+    transform: translateY(0) scale(1);
   }
   50% {
-    transform: translateY(-10px);
+    transform: translateY(-10px) scale(1.05);
   }
 }
 
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.02); }
+  100% { transform: scale(1); }
+}
+
+@keyframes swipeReveal {
+  from { transform: translateX(0); }
+  to { transform: translateX(-80px); }
+}
+
+/* Mobile-first responsive design */
 @media (max-width: 768px) {
   .task-list {
     gap: 12px;
+    padding: 8px 12px;
+  }
+  
+  .task-item-wrapper {
+    border-radius: 16px; /* Larger radius for mobile */
+    min-height: 70px; /* Better touch target */
+  }
+  
+  .empty-state-icon {
+    font-size: 3rem;
+  }
+  
+  .empty-state-title {
+    font-size: 1.2rem;
+  }
+  
+  .empty-state-message {
+    font-size: 1rem;
+  }
+  
+  /* Larger touch targets for mobile */
+  .swipe-action {
+    min-width: 100px;
+    padding: 0 24px;
+  }
+  
+  .touch-handle {
+    padding: 20px 16px;
+  }
+}
+
+/* Small mobile devices */
+@media (max-width: 480px) {
+  .task-list {
+    gap: 10px;
+    padding: 6px 8px;
+  }
+  
+  .task-list-empty {
+    margin: 20px 12px;
+    padding: 60px 16px;
+  }
+  
+  .empty-state-icon {
+    font-size: 2.5rem;
+  }
+}
+
+/* Tablet and larger screens */
+@media (min-width: 1024px) {
+  .task-list {
+    gap: 20px;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .task-item-wrapper,
+  .task-item-swipe-actions,
+  .task-list-refresh-indicator {
+    transition: none;
+    animation: none;
+  }
+  
+  .empty-state-icon {
+    animation: none;
+  }
+  
+  .refresh-spinner {
+    animation-duration: 2s; /* Slower for reduced motion */
+  }
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+  .task-item-wrapper {
+    background: #2d3748;
+    border-color: #4a5568;
+    color: #e2e8f0;
+  }
+  
+  .task-list-empty {
+    background: rgba(45, 55, 72, 0.8);
+    color: #a0aec0;
+    border-color: rgba(74, 85, 104, 0.3);
+  }
+  
+  .empty-state-title {
+    color: #e2e8f0;
+  }
+  
+  .empty-state-message {
+    color: #cbd5e0;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .task-item-wrapper {
+    border-width: 2px;
+  }
+  
+  .task-item-wrapper.drag-over {
+    border-width: 3px;
+  }
+  
+  .swipe-action {
+    border: 1px solid white;
+  }
+}
+
+/* Landscape orientation adjustments */
+@media (max-width: 768px) and (orientation: landscape) {
+  .task-list {
+    gap: 8px;
+  }
+  
+  .task-item-wrapper {
+    min-height: 60px;
+  }
+  
+  .task-list-empty {
+    padding: 40px 20px;
+  }
+}
+
+/* Very large screens */
+@media (min-width: 1440px) {
+  .task-list {
+    max-width: 900px;
   }
 }
