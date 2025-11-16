@@ -1,5 +1,6 @@
 /* Enhanced: Improve filter transition animations */
 /* Enhanced: Enhance FilterTabs mobile responsiveness */
+
 .filter-tabs {
   margin-bottom: 30px;
 }
@@ -35,10 +36,16 @@
 .filter-tab:hover {
   color: #ffffff;
   transform: translateY(-2px);
+  box-shadow: 0 3px 10px rgba(0, 243, 255, 0.2); /* Added hover glow */
+}
+
+.filter-tab:active {
+  transform: scale(0.96); /* Smooth press-down effect */
 }
 
 .filter-tab.active {
   color: #ffffff;
+  text-shadow: 0 0 8px rgba(0, 243, 255, 0.6); /* Active glow */
 }
 
 .filter-tab-slider {
@@ -47,11 +54,30 @@
   left: 6px;
   width: calc(25% - 6px);
   height: calc(100% - 12px);
-  background: linear-gradient(135deg, rgba(0, 243, 255, 0.2) 0%, rgba(139, 92, 246, 0.2) 100%);
+  background: linear-gradient(
+    135deg,
+    rgba(0, 243, 255, 0.2) 0%,
+    rgba(139, 92, 246, 0.2) 100%
+  );
   border: 1px solid rgba(0, 243, 255, 0.3);
   border-radius: 8px;
   transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   box-shadow: 0 4px 12px rgba(0, 243, 255, 0.2);
+}
+
+/* Premium reflection glass effect */
+.filter-tab-slider::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(
+    145deg,
+    rgba(255, 255, 255, 0.15),
+    rgba(255, 255, 255, 0)
+  );
+  opacity: 0.4;
+  pointer-events: none;
 }
 
 @media (max-width: 768px) {
@@ -70,3 +96,12 @@
   }
 }
 
+@media (max-width: 480px) {
+  .filter-tabs-container {
+    padding: 4px;
+  }
+
+  .filter-tab {
+    padding: 8px 14px;
+  }
+}
