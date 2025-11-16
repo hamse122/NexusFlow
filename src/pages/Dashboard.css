@@ -1,5 +1,43 @@
 /* Enhanced: Improve Dashboard layout spacing */
 .dashboard-page {
   width: 100%;
+  min-height: 100vh;
+  padding: 30px 40px; /* Better spacing */
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  background: rgba(255, 255, 255, 0.02);
+  backdrop-filter: blur(15px);
+  animation: fadeIn 0.4s ease;
 }
 
+/* Optional max width for cleaner centered layout */
+.dashboard-page > * {
+  width: 100%;
+  max-width: 1200px;
+}
+
+/* Smooth entrance animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Mobile responsive spacing */
+@media (max-width: 768px) {
+  .dashboard-page {
+    padding: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .dashboard-page {
+    padding: 15px;
+  }
+}
